@@ -4,18 +4,17 @@ import { GetMonitors } from '../utils/uptimerobot';
 
 const Uptime = (props) => {
 
+  const { CountDays } = window.Config;
   const { apikey } = props;
-  const [ monitors, setMonitors ] = useState(null);
+  const [monitors, setMonitors] = useState(null);
 
   useEffect(() => {
-    GetMonitors(apikey, 60).then(setMonitors);
-  }, [apikey]);
+    GetMonitors(apikey, CountDays).then(setMonitors);
+  }, [apikey, CountDays]);
 
   return monitors ? monitors.map(item => (
     <UptimeItem key={item.id} monitor={item} />
-  )) : (
-    <div className="item loading"></div>
-  );
+  )) : <div className="item loading"></div>;
 }
 
 export default Uptime;

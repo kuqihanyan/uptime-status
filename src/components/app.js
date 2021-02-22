@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from './header';
 import Footer from './footer';
 import Uptime from './uptime';
-import { ApiKeys } from './../config';
 
 const App = () => {
+
+  const { ApiKeys, SiteName } = window.Config;
+
+  useEffect(() => {
+    window.document.title = SiteName;
+  }, [SiteName]);
+
   return (
     <>
       <Header />
